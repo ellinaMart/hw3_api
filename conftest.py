@@ -13,6 +13,12 @@ def pytest_addoption(parser):
         default="https://api.openbrewerydb.org/breweries",
         help="This is request url"
     )
+    parser.addoption(
+        "--url3",
+        action="store",
+        default="https://jsonplaceholder.typicode.com/posts",
+        help="This is request url"
+    )
 
 @pytest.fixture(scope="session")
 def base_url1(request):
@@ -21,3 +27,7 @@ def base_url1(request):
 @pytest.fixture(scope="session")
 def base_url2(request):
     return request.config.getoption("--url2")
+
+@pytest.fixture(scope="session")
+def base_url3(request):
+    return request.config.getoption("--url3")
