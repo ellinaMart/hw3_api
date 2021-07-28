@@ -52,4 +52,4 @@ def base_url4(request):
 @pytest.fixture(scope="session")
 def resp_status_code(request):
     return request.config.getoption("--status_code")
-   # return getattr(requests, request.config.getoption("--status_code"))
+
