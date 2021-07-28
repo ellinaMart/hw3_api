@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -25,6 +26,12 @@ def pytest_addoption(parser):
         default="https://ya.ru",
         help="This is request url"
     )
+    parser.addoption(
+        "--status_code",
+        default='200',
+        choices = ['200', '300', '400', '404', '500', '502'],
+        help="This is status code"
+    )
 
 @pytest.fixture(scope="session")
 def base_url1(request):
@@ -41,3 +48,8 @@ def base_url3(request):
 @pytest.fixture(scope="session")
 def base_url4(request):
     return request.config.getoption("--url4")
+
+@pytest.fixture(scope="session")
+def resp_status_code(request):
+    return request.config.getoption("--status_code")
+   # return getattr(requests, request.config.getoption("--status_code"))
