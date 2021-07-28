@@ -19,6 +19,12 @@ def pytest_addoption(parser):
         default="https://jsonplaceholder.typicode.com/posts",
         help="This is request url"
     )
+    parser.addoption(
+        "--url4",
+        action="store",
+        default="https://ya.ru",
+        help="This is request url"
+    )
 
 @pytest.fixture(scope="session")
 def base_url1(request):
@@ -31,3 +37,7 @@ def base_url2(request):
 @pytest.fixture(scope="session")
 def base_url3(request):
     return request.config.getoption("--url3")
+
+@pytest.fixture(scope="session")
+def base_url4(request):
+    return request.config.getoption("--url4")
